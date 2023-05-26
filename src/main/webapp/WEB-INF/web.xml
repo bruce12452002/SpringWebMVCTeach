@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd"
+         version="4.0">
+
+    <!--    父容器是原本的 spring；子容器是 springMVC 容器-->
+    <!--    父容器掃 service、depository；子容器掃 controller 和其他-->
+    <!--    父容器用的是 listener；子容器用 DispatcherServlet-->
+    <!--    如果全給父容器管理，因為父容器沒有什麼 @RequestMapping，所以不會產生 handler，而造成 404-->
+    <!--    如果全給子容器管理是可行的，但為了擴展，通常不會這麼做，如之後不再用 springMVC 就要改比較多了-->
+    <!--    父子容器掃描的包通常都是分開的，否則建構子會被調用 2 次-->
+
+
+    <!--    <context-param>-->
+    <!--        <param-name>contextConfigLocation</param-name>-->
+    <!--        <param-value>classpath:lesson1.xml</param-value>-->
+    <!--    </context-param>-->
+    <!--    <context-param>-->
+    <!--        <param-name>contextClass</param-name>-->
+    <!--        <param-value>org.springframework.web.context.support.AnnotationConfigWebApplicationContext</param-value>-->
+    <!--    </context-param>-->
+    <!--    <listener>-->
+    <!--        &lt;!&ndash; /WEB-INF/applicationContext.xml&ndash;&gt;-->
+    <!--        <listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>-->
+    <!--    </listener>-->
+
+    <!--    <servlet>-->
+    <!--        <servlet-name>DispatcherServlet</servlet-name>-->
+    <!--        <servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>-->
+    <!--        <init-param>-->
+    <!--            <param-name>contextConfigLocation</param-name>-->
+    <!--            <param-value>classpath:lesson1.xml</param-value>-->
+    <!--        </init-param>-->
+    <!--        <load-on-startup>2</load-on-startup>-->
+    <!--    </servlet>-->
+    <!--    <servlet-mapping>-->
+    <!--        <servlet-name>DispatcherServlet</servlet-name>-->
+    <!--        <url-pattern>/</url-pattern>-->
+    <!--    </servlet-mapping>-->
+
+    <!-- servlet 設定靜態資源 -->
+    <!-- tomcat/conf/web.xml 已有 default 的 <servlet-name> 標籤-->
+    <!-- 放在和 WEB-INF 同級的目錄即可-->
+    <!-- http://localhost:8080/context_name/image/fly.jpeg -->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>/image/*</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>*.html</url-pattern>-->
+<!--    </servlet-mapping>-->
+<!--    <servlet-mapping>-->
+<!--        <servlet-name>default</servlet-name>-->
+<!--        <url-pattern>*.css</url-pattern>-->
+<!--    </servlet-mapping>-->
+</web-app>
